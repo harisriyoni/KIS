@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Keuangan UMKM</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Add custom styles here */
+        .sidebar-button {
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-button:hover {
+            background-color: #4a5568;
+        }
+
+        .sidebar-menu {
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .sidebar-menu-item:hover {
+            background-color: #2d3748;
+        }
+
+        .dropdown-menu {
+            background-color: #2d3748;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-menu-item:hover {
+            background-color: #4a5568;
+        }
+
+        /* Indicator for dropdown */
+        .dropdown-indicator {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-200 flex">
+    <!-- Sidebar - Manajemen Inventaris -->
+    <div class="bg-gray-800 text-white p-4 min-h-screen w-1/5">
+        <button onclick="toggleInventoryMenu()" class="w-full flex justify-between items-center sidebar-button font-bold py-2 px-4 rounded mb-4">
+            <span>Manajemen Inventaris</span>
+            <span class="dropdown-indicator">=</span>
+        </button>
+        <ul id="inventoryMenu" class="hidden sidebar-menu">
+            <li class="mb-2">
+                <button onclick="showProductPage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Catat Barang
+                </button>
+            </li>
+            <li class="mb-2">
+                <button onclick="toggleStockMenu()" class="w-full flex justify-between items-center font-bold py-2 px-4 rounded sidebar-button">
+                    <span>Stok Barang</span>
+                    <span class="dropdown-indicator">=</span>
+                </button>
+                <ul id="stockMenu" class="ml-4 hidden dropdown-menu">
+                    <li>
+                        <button onclick="showStockPage()" class="w-full font-bold py-2 px-4 rounded dropdown-menu-item">
+                            Stok Barang Masuk
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showStockOutPage()" class="w-full font-bold py-2 px-4 rounded dropdown-menu-item">
+                            Stok Barang Keluar
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li class="mb-2">
+                <button onclick="showFinalDataPage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Data Barang Semua
+                </button>
+            </li>
+        </ul>
+
+        <button onclick="toggleTransactionMenu()" class="w-full flex justify-between items-center sidebar-button font-bold py-2 px-4 rounded mb-4">
+            <span>Manajemen Transaksi</span>
+            <span class="dropdown-indicator">=</span>
+        </button>
+        <ul id="transactionMenu" class="hidden sidebar-menu">
+            <li class="mb-2">
+                <button onclick="showSalesPage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Penjualan
+                </button>
+            </li>
+            <li class="mb-2">
+                <button onclick="showPurchasePage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Pembelian
+                </button>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4 bg-white rounded shadow-lg mt-8 w-3/5">
+        <h1 class="text-3xl font-semibold mb-4">Inventaris Barang UMKM</h1>
+        <div id="content"></div>
+    </div>
+
+    <!-- Sidebar - Manajemen Transaksi
+    <div class="bg-gray-800 text-white p-4 min-h-screen w-1/5">
+        <button onclick="toggleTransactionMenu()" class="w-full flex justify-between items-center sidebar-button font-bold py-2 px-4 rounded mb-4">
+            <span>Manajemen Transaksi</span>
+            <span class="dropdown-indicator">=</span>
+        </button>
+        <ul id="transactionMenu" class="hidden sidebar-menu">
+            <li class="mb-2">
+                <button onclick="showSalesPage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Penjualan
+                </button>
+            </li>
+            <li class="mb-2">
+                <button onclick="showPurchasePage()" class="w-full font-bold py-2 px-4 rounded sidebar-menu-item">
+                    Pembelian
+                </button>
+            </li>
+        </ul>
+    </div> -->
+
+    <script src="script.js"></script>
+    <script>
+        function toggleInventoryMenu() {
+            const inventoryMenu = document.getElementById("inventoryMenu");
+            inventoryMenu.classList.toggle("hidden");
+        }
+
+        function toggleStockMenu() {
+            const stockMenu = document.getElementById("stockMenu");
+            stockMenu.classList.toggle("hidden");
+        }
+
+        function toggleTransactionMenu() {
+            const transactionMenu = document.getElementById("transactionMenu");
+            transactionMenu.classList.toggle("hidden");
+        }
+
+        // Call the function to display the initial page
+        showProductPage();
+    </script>
+</body>
+</html>
